@@ -1,2 +1,3 @@
-# light-dark-mode-toggle-block
-A WordPress plugin to provide a Dark Theme Toggle based on light-dark CSS function
+# Dark Mode Switch
+
+A WordPress plugin that provides Dark Mode switch (Gutenberg block) based on light-dark CSS function.
