@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "jmaleman/dark-mode-switch",
+	"version": "0.1.0",
+	"title": "Dark Mode Switch",
+	"category": "widgets",
+	"icon": "welcome-view-site",
+	"description": "A WordPress plugin that provides dark mode switch (Gutenberg block) based on light-dark CSS function.",
+	"example": {},
+	"supports": {
+		"interactivity": true
+	},
+	"textdomain": "dark-mode-switch",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScriptModule": "file:./view.js"
+}

@@ -1,0 +1,106 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ */
+
+:root {
+	--moon-color: #f1f1f1;
+	--icon-size: 24px;
+	--sun-color: #eec413;
+	--sun-ray-size: 4px;
+	--sun-ray-distance: calc(var(--icon-size) / 2 + var(--sun-ray-size));
+}
+
+.theme-toggle {
+	cursor: pointer;
+	position: relative;
+	height: var(--icon-size);
+	width: var(--icon-size);
+	margin: 0;
+	padding: 0;
+	border: none;
+	background: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.sun,
+	.moon {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		border-radius: 50%;
+		transition:
+			transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+			opacity 0.3s ease;
+	}
+
+	.sun {
+		opacity: 1;
+		transform: translate(-50%, -50%) scale(1) rotate(0deg);
+		background-color: var(--sun-color);
+		height: calc(var(--icon-size) - var(--sun-ray-size));
+		width: calc(var(--icon-size) - var(--sun-ray-size));
+
+		.ray {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: var(--sun-ray-size);
+			height: var(--sun-ray-size);
+			border-radius: 50%;
+			background: var(--sun-color);
+			transform-origin: center;
+			opacity: 1;
+			transition:
+				transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+				opacity 0.3s ease;
+
+			$rays: 8;
+			$angle: calc(360deg / $rays);
+
+			@for $i from 1 through $rays {
+				&:nth-child(#{$i}) {
+					transform: translate(-50%, -50%)
+						rotate(#{$i * $angle})
+						translateX(var(--sun-ray-distance));
+				}
+			}
+		}
+	}
+
+	.moon {
+		opacity: 0;
+		transform: translate(-50%, -50%) scale(0) rotate(-180deg);
+		background-color: transparent;
+		box-shadow: inset 8px -8px 1px 1px var(--moon-color);
+		height: var(--icon-size);
+		width: var(--icon-size);
+	}
+}
+
+// Dark mode style -------------------------------------------------------------
+.is-dark {
+	.theme-toggle {
+		.sun {
+			opacity: 0;
+			transform: translate(-50%, -50%) scale(0) rotate(180deg);
+
+			.ray {
+				opacity: 0;
+				@for $i from 1 through 8 {
+					&:nth-child(#{$i}) {
+						transform: translate(-50%, -50%)
+							rotate(#{$i * 45deg})
+							translateX(0); // Los rayos se contraen hacia el centro
+					}
+				}
+			}
+		}
+
+		.moon {
+			opacity: 1;
+			transform: translate(-50%, -50%) scale(1) rotate(0deg);
+		}
+	}
+}
